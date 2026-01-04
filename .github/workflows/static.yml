@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>קמפיין חידוש היכל בית הכנסת - הרב יעקב כהן</title>
+    <!-- גופנים -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700;800&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
+    <!-- אייקונים -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --navy: #1a237e;
+            --gold: #d4af37;
+            --cream: #fffaf0;
+            --slate: #334155;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #e2e8f0;
+            font-family: 'Assistant', sans-serif;
+            color: var(--slate);
+            line-height: 1.6;
+        }
+
+        /* הגדרות להדפסה ל-PDF */
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white; padding: 0; }
+            .slide-container {
+                box-shadow: none !important;
+                margin: 0 !important;
+                page-break-after: always;
+                border: none !important;
+            }
+        }
+
+        .no-print-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: var(--navy);
+            color: var(--gold);
+            border: 2px solid var(--gold);
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .no-print-btn:hover {
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        /* מכולת שקף */
+        .presentation-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 0;
+            gap: 40px;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: var(--cream);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            border: 1px solid #ddd;
+        }
+
+        /* עיטורים */
+        .gold-border {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            background: linear-gradient(90deg, var(--gold), var(--navy), var(--gold));
+            z-index: 10;
+        }
+
+        /* כותרות */
+        h1, h2, h3 {
+            font-family: 'Frank Ruhl Libre', serif;
+            color: var(--navy);
+        }
+
+        .section-title {
+            font-size: 56px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            border-right: 12px solid var(--gold);
+            padding-right: 20px;
+        }
+
+        /* פריסה */
+        .content {
+            flex: 1;
+            padding: 40px 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            z-index: 5;
+        }
+
+        .two-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            width: 100%;
+            align-items: center;
+        }
+
+        /* תמונות */
+        .img-frame {
+            width: 100%;
+            height: 450px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border: 6px solid white;
+            background: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* פוטר */
+        .footer-bar {
+            background: var(--navy);
+            color: var(--gold);
+            padding: 15px 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 800;
+            font-size: 24px;
+            width: 100%;
+        }
+
+        /* כרטיסי מידע */
+        .info-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            border-top: 5px solid var(--gold);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            flex: 1;
+        }
+
+        .info-card i {
+            font-size: 45px;
+            color: var(--navy);
+            margin-bottom: 15px;
+        }
+
+        /* טבלה */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background: var(--navy);
+            color: white;
+            padding: 20px;
+            text-align: right;
+        }
+
+        td {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            font-size: 24px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <button class="no-print-btn no-print" onclick="window.print()">
+        <i class="fa-solid fa-download"></i> שמירה כ-PDF להפצה
+    </button>
+
+    <div class="presentation-wrapper">
+
+        <!-- שקף 1: פתיחה -->
+        <div class="slide-container" style="background: linear-gradient(rgba(26, 35, 126, 0.8), rgba(26, 35, 126, 0.8)), url('data:image/svg+xml;charset=UTF-8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'1280\' height=\'720\'><rect width=\'100%\' height=\'100%\' fill=\'%231a237e\'/><text x=\'50%\' y=\'50%\' font-size=\'40\' text-anchor=\'middle\' fill=\'white\' font-family=\'serif\'></text></svg>') center/cover;">
+            <div style="text-align: center; color: white;">
+                <h1 style="font-size: 90px; color: var(--gold); margin-bottom: 20px;">חדש ימינו כקדם</h1>
+                <h2 style="color: white; font-size: 42px; font-weight: 300;">קמפיין חידוש ופיאור היכל בית הכנסת</h2>
+                <div style="width: 150px; height: 3px; background: var(--gold); margin: 40px auto;"></div>
+                <p style="font-size: 28px;">"כי ביתי בית תפילה ייקרא לכל העמים"</p>
+            </div>
+        </div>
+
+        <!-- שקף 2: הרב יצחק כהן -->
+        <div class="slide-container">
+            <div class="gold-border"></div>
+            <div class="content">
+                <div class="two-cols">
+                    <div class="img-frame" style="border-radius: 50%; width: 450px; height: 450px; margin: 0 auto;">
+                        <img src="" alt="הרב יצחק כהן">
+                    </div>
+                    <div>
+                        <h2 class="section-title">ברכת הרב יצחק כהן שליט"א</h2>
+                        <p style="font-size: 32px; font-style: italic; color: var(--navy); font-weight: 700;">"מצווה גדולה לפאר את מקום התפילה, למען תהיה התפילה ביישוב הדעת ובהדר הראוי לבית ה'."</p>
+                        <p style="margin-top: 20px;">הרב יצחק כהן קורא לכל הידידים ובני הקהילה להיות שותפים בזכות הנצח של ריהוט בית המדרש וההיכל.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bar">
+                <span>לתרומות: הרב יעקב כהן</span>
+                <span>050-4147734</span>
+            </div>
+        </div>
+
+        <!-- שקף 3: הרב יעקב כהן -->
+        <div class="slide-container">
+            <div class="gold-border"></div>
+            <div class="content">
+                <div class="two-cols">
+                    <div>
+                        <h2 class="section-title">פנייה מהרב יעקב כהן</h2>
+                        <p style="font-size: 28px; margin-bottom: 20px;">"אנו זקוקים לעזרתכם כדי להפוך את החלום למציאות. כל כיסא שנתרם הוא עדות לשותפות אמת בבניין הקהילה."</p>
+                        <p>לפרטים נוספים והקדשות ניתן לפנות אלי אישית בכל עת.</p>
+                    </div>
+                    <div class="img-frame" style="border-radius: 50%; width: 450px; height: 450px; margin: 0 auto;">
+                        <img src="" alt="הרב יעקב כהן">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bar">
+                <span>ליצירת קשר: 050-4147734</span>
+            </div>
+        </div>
+
+        <!-- שקף 4: המצב הקיים - הכיסאות -->
+        <div class="slide-container">
+            <div class="gold-border"></div>
+            <div class="content">
+                <div class="two-cols">
+                    <div>
+                        <h2 class="section-title">הצורך: המצב הקיים</h2>
+                        <p style="font-size: 28px; margin-bottom: 20px;">לאחר עשרות שנים של פעילות ברוכה, ריהוט בית הכנסת התבלה בצורה משמעותית:</p>
+                        <ul style="list-style: none; font-size: 24px;">
+                            <li style="margin-bottom: 15px;"><i class="fa-solid fa-xmark" style="color: #c62828; margin-left: 10px;"></i> כיסאות שבורים ובלויים שאינם נוחים.</li>
+                            <li style="margin-bottom: 15px;"><i class="fa-solid fa-xmark" style="color: #c62828; margin-left: 10px;"></i> מראה שחוק שאינו הולם את כבוד הקהילה.</li>
+                            <li style="margin-bottom: 15px;"><i class="fa-solid fa-xmark" style="color: #c62828; margin-left: 10px;"></i> פגיעה בריכוז בזמן התפילה והלימוד.</li>
+                        </ul>
+                    </div>
+                    <div class="img-frame">
+                        <img src="" alt="כיסאות ישנים">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bar">
+                <span>צרו קשר עכשיו: 050-4147734</span>
+            </div>
+        </div>
+
+        <!-- שקף 5: החזון - הכיסאות החדשים -->
+        <div class="slide-container">
+            <div class="gold-border"></div>
+            <div class="content">
+                <div class="two-cols">
+                    <div class="img-frame">
+                        <img src="" alt="כיסאות חדשים">
+                    </div>
+                    <div>
+                        <h2 class="section-title">החזון: היכל מפואר</h2>
+                        <p style="font-size: 26px;">אנו מתכוונים להתקין מערכות ישיבה יוקרתיות:</p>
+                        <div style="display: flex; gap: 20px; margin-top: 30px;">
+                            <div class="info-card">
+                                <i class="fa-solid fa-couch"></i>
+                                <h3>נוחות</h3>
+                                <p>תמיכה אורטופדית מלאה</p>
+                            </div>
+                            <div class="info-card">
+                                <i class="fa-solid fa-shield-heart"></i>
+                                <h3>איכות</h3>
+                                <p>עץ בוק מלא וריפוד עמיד</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bar">
+                <span>להקדשה: הרב יעקב כהן 050-4147734</span>
+            </div>
+        </div>
+
+        <!-- שקף 6: מסלולי תרומה -->
+        <div class="slide-container">
+            <div class="gold-border"></div>
+            <div class="content">
+                <div style="width: 100%;">
+                    <h2 class="section-title" style="text-align: center; border: none; padding: 0;">הזדמנות לזכות נצח והנצחה</h2>
+                    <table style="margin-top: 40px;">
+                        <thead>
+                            <tr>
+                                <th>מסלול הקדשה</th>
+                                <th>תיאור</th>
+                                <th>סכום השתתפות</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>הקדשת כיסא</strong></td>
+                                <td>לוחית הנצחה מהודרת על גב הכיסא</td>
+                                <td style="color: var(--gold); font-weight: 800;">1,800 ₪</td>
+                            </tr>
+                            <tr>
+                                <td><strong>הקדשת שורה</strong></td>
+                                <td>שלט הקדשה בולט בראש השורה</td>
+                                <td style="color: var(--gold); font-weight: 800;">10,000 ₪</td>
+                            </tr>
+                            <tr>
+                                <td><strong>עמוד תפילה</strong></td>
+                                <td>הקדשה על עמוד השליח ציבור</td>
+                                <td style="color: var(--gold); font-weight: 800;">25,000 ₪</td>
+                            </tr>
+                            <tr>
+                                <td><strong>שותפות בבניין</strong></td>
+                                <td>לוח הנצחה מרכזי בכניסה להיכל</td>
+                                <td style="color: var(--gold); font-weight: 800;">50,000 ₪</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- שקף 7: סיום ויצירת קשר -->
+        <div class="slide-container" style="background-color: var(--navy); color: white;">
+            <div style="text-align: center;">
+                <h2 style="color: var(--gold); font-size: 75px; margin-bottom: 20px;">אל תעמדו מנגד!</h2>
+                <p style="font-size: 34px; max-width: 900px; margin: 0 auto 50px;">זה הזמן להבטיח את חלקכם בבית ה' וליהנות מזכות שתעמוד לכם ולמשפחתכם לדורות.</p>
+                
+                <div style="background: white; color: var(--navy); padding: 50px; border-radius: 20px; border: 5px solid var(--gold); display: inline-block;">
+                    <p style="font-size: 30px; font-weight: bold; margin-bottom: 20px;">ליצירת קשר, תרומות והקדשות:</p>
+                    <p style="font-size: 32px;">הרב יעקב כהן</p>
+                    <p style="font-size: 70px; font-weight: 900; color: var(--gold); letter-spacing: 2px;">050-4147734</p>
+                </div>
+                
+                <p style="margin-top: 40px; font-size: 24px; opacity: 0.8;">"ויהי נועם ה' אלוקינו עלינו ומעשה ידינו כוננהו"</p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
